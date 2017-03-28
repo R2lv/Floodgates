@@ -53,3 +53,29 @@ Increases the drop count in the bucket. In real terms this mean it decrements th
 `boolean` - `true` when the UID has enough remaining requests to fulfil this request, `false` when the request should be rejected due to exceeding the rate limit
 
 
+### capacityLeft
+`capacityLeft()`
+Fetches the number of drops that can be added to the bucket before it overflows.
+#### returns
+`int` - An integer representing the remaining requests that can be performed before incurring a rate limit
+
+
+### capacityUsed
+`capacityUsed()`
+Fetches the amount of drops currently in the bucket.
+#### returns
+`int` - An integer representing the number of requests that have been performed in the current time window
+
+
+### isFull
+`isFull()`
+Fetches the state of the bucket's remaining capacity
+#### returns
+`boolean` - `true` when a subsequent request to `addDrop` would return false, i.e. the request limit has been achieved
+
+
+### flush
+`flush()`
+Reset the bucket contents, i.e. empty all drops from bucket.
+#### returns
+void
