@@ -1,0 +1,13 @@
+{
+    "name":"davidfricker/floodgates",
+    "description":"High-speed rate limiter using the leaky bucket algorithm",
+    "license": "MIT",
+    "require":{
+        "php":"^5.3.3 || ^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DavidFricker\\Floodgates\\": "src"
+        }
+    }
+}
