@@ -1,5 +1,7 @@
 <?php
 
+namespace DavidFricker\Floodgates;
+
 class Floodgates {
 	private $bucket_capacity;
 	// time in seconds for one drop to leak
@@ -102,24 +104,7 @@ var_dump($drops_to_leak);
 	public function isFull() {
 		//return ();
 	}
-}
 
-$UID = md5('127.0.0.7');
-
-// 10 requests in the bucket
-// requests leaking at 1 per second 
-// = 10 requests in every ten second window
-// 
-// 3 requests per 5 second window
-$Floodgates = new Floodgates($UID, 3, 5);
-/*var_dump(
-	$Floodgates->addDrop($UID));*/
-
-var_dump(
-	$Floodgates->addDrop($UID),
-	$Floodgates->addDrop($UID),
-	$Floodgates->addDrop($UID),
-	$Floodgates->addDrop($UID),
-	$Floodgates->addDrop($UID),
-	$Floodgates->addDrop($UID) // this one should fail
-	);
+	// empty all drops from bucket
+	public function flush() {
+		$this->storage->set($this->UID, 0);
