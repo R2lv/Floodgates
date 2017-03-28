@@ -44,3 +44,12 @@ if(!$Floodgates->addDrop($drops)) {
 ```
 ##Recommendations
 Consider enabling a swap file to ensure your processes are not killed by the system if you were to receive many requests from differing UIDs.
+
+## Methods
+### addDrop
+`addDrop($drops = 1)`
+Increases the drop count in the bucket. In real terms this mean it decrements the remaining requests possible in the current window of time.
+#### returns
+`boolean` - `true` when the UID has enough remaining requests to fulfil this request, `false` when the request should be rejected due to exceeding the rate limit
+
+
