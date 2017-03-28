@@ -20,7 +20,7 @@ $Floodgates = new Floodgates($UID, $bucket_capacity, $leak_rate);
 Once you have created a rate limiter object as directed in the previous section simply call the `addDrop` method and check its return value. If the function returns true then the UID has not exceeded his or her allowed limit and so you may continue.
 
 ```PHP
-if(!$Floodgates->addDrop()) {
+if (!$Floodgates->addDrop()) {
   die('Rate limit exceeded');
 }
 
@@ -35,7 +35,7 @@ To increase the drop count by more than one simply pass the integer you wish to 
 
 ```PHP
 $drops = 3;
-if(!$Floodgates->addDrop($drops)) {
+if (!$Floodgates->addDrop($drops)) {
   die('Rate limit exceeded');
 }
 
