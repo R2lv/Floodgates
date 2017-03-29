@@ -9,6 +9,7 @@ namespace DavidFricker\Floodgates;
 class Floodgates {
 	/**
 	 * Size of bucket - amount of requests permitted
+	 * 
 	 * @var int
 	 */
 	private $bucket_capacity;
@@ -16,6 +17,7 @@ class Floodgates {
 	/**
 	 * Bucket leak rate - time taken for all the drops as defined
 	 * in $bucket_capacity to leak from the bucket
+	 * 
 	 * @var int
 	 */
 	private $bucket_leak_rate;
@@ -24,12 +26,14 @@ class Floodgates {
 	 * Defines in seconds since Unix epoch the last time the bucket 
 	 * was 'leaked' - the last time the bucket was cleared of drops 
 	 * that have surpassed their TTL
+	 * 
 	 * @var int
 	 */
 	private $bucket_last_leak_time;
 
 	/**
 	 * Handel to Redis in-memory storage
+	 * 
 	 * @var Object
 	 */
 	private $storage;
@@ -42,7 +46,8 @@ class Floodgates {
 	/**
 	 * The unique ID for the bucket to be manipulated
 	 * Common values include IP address or browser fingerprint
-	 * @var [type]
+	 * 
+	 * @var string
 	 */
 	private $UID;
 
@@ -110,6 +115,7 @@ class Floodgates {
 
 	/**
 	 * Fetches the amount of drops in the bucket
+	 * 
 	 * @return integer Drop count in the bucket
 	 */
 	private function getDropCount() {
@@ -176,6 +182,7 @@ class Floodgates {
 	/**
 	 * Fetches the capacity for more drops of the bucket
 	 * i.e. the amount of requests remaining before rate limiting
+	 * 
 	 * @return integer amount of requests left before rate limiting
 	 */
 	public function capacityLeft() {
@@ -186,6 +193,7 @@ class Floodgates {
 	/**
 	 * Fetches the capacity of the bucket that has been used
 	 * i.e. the amount of requests that have been recorded in the current rate limit window
+	 * 
 	 * @return integer [description]
 	 */
 	public function capacityUsed() {
