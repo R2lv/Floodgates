@@ -42,7 +42,7 @@ if (!$Floodgates->addDrop($drops)) {
 // perform the the task that would otherwise be rate limited here
 
 ```
-##Recommendations
+## Recommendations
 Consider enabling a swap file to ensure your processes are not killed by the system if you were to receive many requests from differing UIDs.
 
 ## Methods
