@@ -28,7 +28,7 @@ if (!$Floodgates->addDrop()) {
 
 ```
 
-### Advhanced rate limiter usage
+### Advanced rate limiter usage
 Some applications will require that a single HTTP call will result in an increment greater than one to the rate limiter, this is often the case when more expensive operations are being performed, such as rendering an image using PHP GD. 
 
 To increase the drop count by more than one simply pass the integer you wish to increment by to the `addDrop` call as shown below.
