@@ -1,5 +1,5 @@
 # Floodgates
-This rate limiting class implements the 'leaky bucket' algorithm. Due to the nature of rate limiting standard file based storage is unsuited to the task. For this reason, Floodgates makes use of Redis NoSQL storage that lives in volatile main memory. This means that you are required to have Redis installed to use Floodgates.
+This rate limiting class implements the 'leaky bucket' algorithm. Due to the nature of rate limiting standard file based storage is unsuited to the task. For this reason, Floodgates makes use of Redis NoSQL storage that lives in main memory. This means that you are required to have Redis installed to use Floodgates.
 
 ## Install
 Using composer
