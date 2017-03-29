@@ -79,3 +79,7 @@ Fetches the state of the bucket's remaining capacity
 Reset the bucket contents, i.e. empty all drops from bucket.
 #### returns
 void
+
+## License
+Released under the MIT license.
+
