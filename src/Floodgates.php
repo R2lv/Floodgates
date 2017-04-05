@@ -2,6 +2,8 @@
 
 namespace DavidFricker\Floodgates;
 
+use Redis;
+
 /**
  * A rate limiting class that implements the leaky bucket algorithm and 
  * makes use of in-memory NoSQL storage for fast operation
