@@ -12,7 +12,7 @@ The following example creates a rate limiting bucket persisted in volatile memor
 
 ```PHP
 $UID = md5('127.0.0.1');
-$bucket_capcity = 5;
+$bucket_capacity = 5;
 $leak_rate = 60;
 $Floodgates = new Floodgates($UID, $bucket_capacity, $leak_rate);
 ```
