@@ -53,10 +53,12 @@ class NoahsArk {
 	 */
 	public function __construct($UID, $ark_capacity) {
 		$this->ark_capacity = $ark_capacity;
-		$this->UID = $UID;
+		$this->UID = self::PREFIX_ARK_OOB. $UID;
 
 		$this->initStorage();
 		$this->fetchCurrOccupancyToObject();
+
+		#$this->setOccupancy(0);die();
 	}
 
 	/**
@@ -76,13 +78,12 @@ class NoahsArk {
 	 * @return void
 	 */
 	private function fetchCurrOccupancyToObject() {
-		$occupancy = $this->storage->get(self::PREFIX_ARK_OOB . $this->UID);
-
-		if (!$occupancy) {
+		$occupancy = $this->storage->get($this->UID);
+		if ($occupancy === false) {
 			$this->setOccupancy(0);
 		}
 		
-		$this->occupants_on_board = $occupancy;
+		$this->occupants_on_board = (int) $occupancy;
 	}
 
 	/**
@@ -91,10 +92,12 @@ class NoahsArk {
 	 * @param integer $time seconds since Unix epoch that the leaked droplets were calculated
 	 */
 	private function setOccupancy($occupancy) {
+		$this->occupants_on_board = $occupancy;
+
 		// could move this to the destructor
 		$this->storage->set(
-			self::PREFIX_ARK_OOB . $this->UID, 
-			$this->occupants_on_board = $occupancy
+			$this->UID, 
+			$occupancy
 		);
 	}
 
@@ -104,7 +107,7 @@ class NoahsArk {
 	 * @return integer request count in the bucket
 	 */
 	private function getOccupancy() {
-		return (int) $this->storage->get(self::PREFIX_ARK_OOB . $this->UID);
+		return (int) $this->storage->get($this->UID);
 	}
 
 	/**
@@ -119,7 +122,7 @@ class NoahsArk {
 			return true;
 		}
 
-		$this->storage->decrBy($this->UID, $drops);
+		$this->storage->decrBy($this->UID, $requests);
 		
 		return false;
 	}
@@ -136,7 +139,7 @@ class NoahsArk {
 	public function remove($requests = 1) {
 		$size = $this->storage->decrBy($this->UID, $requests);
 		if ($size < 0) {
-			$size = 0;
+			$this->setOccupancy(0);
 		}
 
 		$this->occupants_on_board = $size;
